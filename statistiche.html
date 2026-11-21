@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistiche | Premio Internazionale Adriano – Città di Tivoli</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; script-src 'self'; connect-src https://nurjufjhzkobqgreckkg.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="same-origin">
+<meta name="theme-color" content="#231F20">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icona-32.png">
+<link rel="stylesheet" href="css/stile.css">
+<link rel="stylesheet" href="css/statistiche.css">
+</head>
+<body class="stat">
+
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="bordo-alto" aria-hidden="true"></div>
+<header class="fascia">
+  <div class="contenitore fascia__interno">
+    <a class="fascia__marchio" href="index.html">
+      <img src="img/titolo-premio-adriano-2026.svg" alt="Premio Adriano 2026, vai al sito" width="2370" height="173">
+    </a>
+    <nav class="fascia__nav fascia__nav--semplice" aria-label="Navigazione">
+      <a href="index.html">Vai al sito</a>
+      <button class="stat__esci" id="esci" type="button" hidden>Esci</button>
+    </nav>
+  </div>
+</header>
+
+<main class="stat__pagina" id="contenuto">
+  <div class="contenitore">
+
+    <noscript>
+      <p class="stat__avviso">Per vedere le statistiche serve JavaScript attivo nel browser.</p>
+    </noscript>
+
+    <section class="ingresso" id="ingresso" aria-label="Accesso alle statistiche" hidden>
+      <h1>Statistiche del sito</h1>
+      <p>Area riservata a chi gestisce il sito. Per vedere le visite serve la password.</p>
+      <form class="ingresso__modulo" id="modulo-ingresso" novalidate>
+        <label for="chiave">Password</label>
+        <input id="chiave" name="chiave" type="password" autocomplete="current-password" spellcheck="false" required>
+        <button class="bottone" id="entra" type="submit">Entra</button>
+        <p class="ingresso__avviso" id="avviso-ingresso" role="alert" hidden></p>
+      </form>
+    </section>
+
+    <section class="cruscotto" id="cruscotto" aria-labelledby="titolo-cruscotto" hidden>
+
+      <div class="stat__testa">
+        <div>
+          <h1 id="titolo-cruscotto">Statistiche del sito</h1>
+          <p class="stat__nota" id="aggiornato"></p>
+        </div>
+        <div class="filtri">
+          <div class="filtri__periodo" role="group" aria-label="Periodo">
+            <button type="button" data-giorni="7" aria-pressed="false">7 giorni</button>
+            <button type="button" data-giorni="30" aria-pressed="true">30 giorni</button>
+            <button type="button" data-giorni="90" aria-pressed="false">90 giorni</button>
+          </div>
+          <button class="filtri__aggiorna" id="aggiorna" type="button">Aggiorna</button>
+        </div>
+      </div>
+
+      <p class="stat__avviso" id="avviso-dati" role="alert" hidden></p>
+
+      <div class="cruscotto__dati" id="dati">
+
+        <ul class="tessere" aria-label="Numeri principali">
+          <li class="tessera tessera--prima">
+            <span class="tessera__nome" id="nome-visite">Visite</span>
+            <strong class="tessera__valore" id="v-visite">–</strong>
+            <span class="tessera__nota" id="n-visite"></span>
+          </li>
+          <li class="tessera">
+            <span class="tessera__nome">Pagine viste</span>
+            <strong class="tessera__valore" id="v-pagine">–</strong>
+            <span class="tessera__nota" id="n-pagine"></span>
+          </li>
+          <li class="tessera">
+            <span class="tessera__nome">Visite di oggi</span>
+            <strong class="tessera__valore" id="v-oggi">–</strong>
+            <span class="tessera__nota" id="n-oggi"></span>
+          </li>
+          <li class="tessera">
+            <span class="tessera__nome">Visite dall’inizio</span>
+            <strong class="tessera__valore" id="v-sempre">–</strong>
+            <span class="tessera__nota" id="n-sempre"></span>
+          </li>
+        </ul>
+
+        <section class="riquadro" aria-labelledby="titolo-giorni">
+          <h2 id="titolo-giorni">Visite per giorno</h2>
+          <p class="riquadro__sotto" id="sotto-giorni"></p>
+          <div class="grafico" id="grafico" tabindex="0" role="group"
+               aria-label="Grafico delle visite per giorno. Con le frecce sinistra e destra si scorre un giorno alla volta. Gli stessi dati sono nella tabella qui sotto."></div>
+          <details class="tabella-giorni">
+            <summary>Mostra i dati in tabella</summary>
+            <section class="tabella-giorni__scorri" tabindex="0" aria-label="Dati giorno per giorno">
+              <table>
+                <thead><tr><th scope="col">Giorno</th><th scope="col">Visite</th><th scope="col">Pagine viste</th></tr></thead>
+                <tbody id="righe-giorni"></tbody>
+              </table>
+            </section>
+          </details>
+        </section>
+
+        <div class="riquadri">
+          <section class="riquadro" aria-labelledby="titolo-fonti">
+            <h2 id="titolo-fonti">Da dove arrivano</h2>
+            <p class="riquadro__sotto">Visite per provenienza</p>
+            <div class="barre" id="barre-fonti"></div>
+            <p class="riquadro__piede">
+              «Diretto o non rilevabile» comprende chi scrive l’indirizzo e chi apre un link da WhatsApp,
+              da una email o da un codice QR senza etichetta.
+            </p>
+          </section>
+
+          <section class="riquadro" aria-labelledby="titolo-dispositivi">
+            <h2 id="titolo-dispositivi">Con cosa navigano</h2>
+            <p class="riquadro__sotto">Visite per dispositivo</p>
+            <div class="barre" id="barre-dispositivi"></div>
+            <h3 class="riquadro__secondo">Lingua del browser</h3>
+            <div class="barre" id="barre-lingue"></div>
+          </section>
+
+          <section class="riquadro" aria-labelledby="titolo-pagine">
+            <h2 id="titolo-pagine">Pagine viste</h2>
+            <p class="riquadro__sotto">Quante volte è stata aperta ogni pagina</p>
+            <div class="barre" id="barre-pagine"></div>
+          </section>
+
+          <section class="riquadro" aria-labelledby="titolo-azioni">
+            <h2 id="titolo-azioni">Cosa fanno</h2>
+            <p class="riquadro__sotto">Pulsanti premuti, contati una volta per pagina aperta</p>
+            <div class="barre" id="barre-azioni"></div>
+          </section>
+        </div>
+
+        <section class="riquadro" aria-labelledby="titolo-link">
+          <h2 id="titolo-link">Link da condividere</h2>
+          <p class="riquadro__sotto">
+            WhatsApp, email e codici QR non dicono al sito da dove arriva la visita. Se condividi questi
+            indirizzi, la visita viene attribuita al canale giusto.
+          </p>
+          <ul class="link" id="link"></ul>
+        </section>
+
+        <section class="riquadro riquadro--note" aria-labelledby="titolo-note">
+          <h2 id="titolo-note">Come leggere questi numeri</h2>
+          <ul class="note">
+            <li>Una <strong>visita</strong> è un ingresso nel sito da fuori. Il sito non riconosce chi torna:
+              la stessa persona che entra tre volte conta tre visite. Il numero delle persone non si può sapere.</li>
+            <li>Non vengono contati i ricaricamenti di pagina, i programmi automatici e chi ha chiesto al
+              proprio browser di non essere tracciato. I numeri sono quindi un po’ più bassi del reale.</li>
+            <li id="nota-inizio"></li>
+            <li id="nota-negati" hidden></li>
+          </ul>
+
+          <div class="note__azioni">
+            <label class="spunta">
+              <input type="checkbox" id="escludi">
+              <span>Non contare le visite fatte da questo dispositivo</span>
+            </label>
+            <button class="bottone bottone--linea" id="scarica" type="button">Scarica i dati (CSV)</button>
+          </div>
+          <p class="riquadro__piede" id="nota-escludi">
+            La scelta vale solo per questo browser e resta salvata qui. Va ripetuta su ogni dispositivo
+            che usi per controllare il sito.
+          </p>
+        </section>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="piede piede--semplice">
+  <div class="contenitore">
+    <p>Premio Internazionale Adriano – Città di Tivoli · Area riservata a Tritype S.r.l. · <a href="index.html">Vai al sito</a></p>
+  </div>
+</footer>
+
+<div class="fumetto" id="fumetto" role="status" hidden></div>
+
+<script src="js/statistiche.js" defer></script>
+</body>
+</html>

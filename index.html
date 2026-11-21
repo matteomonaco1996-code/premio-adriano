@@ -8,7 +8,7 @@
 
 <meta name="robots" content="noindex, nofollow">
 
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; script-src 'self'; connect-src https://nurjufjhzkobqgreckkg.supabase.co; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <meta property="og:type" content="website">
@@ -235,8 +235,8 @@
         </dl>
 
         <div class="azioni">
-          <a class="bottone" href="cerimonia-lancio-2026.ics" download>Aggiungi al calendario</a>
-          <a class="bottone bottone--linea" href="https://www.google.com/maps/search/?api=1&amp;query=Villa+d%27Este+Tivoli" target="_blank" rel="noopener noreferrer">Come arrivare</a>
+          <a class="bottone" href="cerimonia-lancio-2026.ics" download data-conta="clic_calendario">Aggiungi al calendario</a>
+          <a class="bottone bottone--linea" href="https://www.google.com/maps/search/?api=1&amp;query=Villa+d%27Este+Tivoli" target="_blank" rel="noopener noreferrer" data-conta="clic_mappa">Come arrivare</a>
         </div>
       </div>
 
@@ -510,7 +510,7 @@
         </p>
       </div>
       <div class="azioni">
-        <a class="bottone" href="mailto:tritype@tritype.it?subject=Premio%20Adriano%20%E2%80%93%20richiesta%20dossier%20partner">Richiedi il dossier</a>
+        <a class="bottone" href="mailto:tritype@tritype.it?subject=Premio%20Adriano%20%E2%80%93%20richiesta%20dossier%20partner" data-conta="clic_dossier">Richiedi il dossier</a>
       </div>
     </div>
 
@@ -542,8 +542,8 @@
       <div>
         <h3>Informazioni e partnership</h3>
         <p class="contatti__email">
-          <a href="mailto:tritype@tritype.it?subject=Premio%20Adriano%20%E2%80%93%20richiesta%20informazioni">tritype@tritype.it</a>
-          <button class="copia" type="button" data-copia="tritype@tritype.it">Copia indirizzo</button>
+          <a href="mailto:tritype@tritype.it?subject=Premio%20Adriano%20%E2%80%93%20richiesta%20informazioni" data-conta="clic_email">tritype@tritype.it</a>
+          <button class="copia" type="button" data-copia="tritype@tritype.it" data-conta="clic_email">Copia indirizzo</button>
         </p>
         <p class="contatti__nota">Le richieste sono raccolte da Tritype S.r.l., che gestisce il sito, e inoltrate all’organizzazione del Premio.</p>
       </div>
@@ -566,7 +566,7 @@
         via Pietro Nenni 5, 00019 Tivoli (RM)<br>
         P.IVA e C.F. 04345721007 · REA RM-760345<br>
         Capitale sociale € 10.710,00 i.v.<br>
-        <a href="mailto:tritype@tritype.it">tritype@tritype.it</a> · tel. 0774 336714
+        <a href="mailto:tritype@tritype.it" data-conta="clic_email">tritype@tritype.it</a> · tel. 0774 336714
       </p>
     </div>
     <nav class="piede__collegamenti" aria-label="Informazioni legali">
@@ -578,5 +578,6 @@
 </footer>
 
 <script src="js/app.js" defer></script>
+<script src="js/conta.js" data-pagina="home" defer></script>
 </body>
 </html>
